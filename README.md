@@ -64,7 +64,6 @@ frontend/
 
 ```
 
-
 ## Frontend Flow Explanation
 
 ### 1️ index.html
@@ -123,6 +122,7 @@ Handles:
 ---
 
 ## Backend Structure (Spring Boot)
+```
 backend/
 │
 ├── controller/
@@ -153,7 +153,7 @@ backend/
 │
 └── UsgeneratorApplication .java
 
----
+```
 
 ## Backend Detailed Explanation
 

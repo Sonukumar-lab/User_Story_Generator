@@ -1,0 +1,9 @@
+# Ignore IDE
+.idea/
+.vscode/
+# Ignore properties file
+backend/src/main/resources/application.properties
+
+# Ignore build folders
+backend/target/
+frontend/node_modules/

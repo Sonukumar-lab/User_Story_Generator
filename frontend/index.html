@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>User Story Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- 🔷 Header -->
+    <header class="app-header">
+        <h1>User Story Generator</h1>
+        <p>Generate professional user stories with multiple combinations</p>
+    </header>
+
+    <!-- 🔷 Main Container -->
+    <main class="container">
+
+        <!-- 🔹 Configuration Section -->
+        <section class="card">
+            <h2>Configuration</h2>
+
+            <!-- Domain -->
+            <div class="form-group">
+                <label for="domainSelect">Select Domain</label>
+                <select id="domainSelect">
+                    <option value="">-- Select Domain --</option>
+                    <option value="fooddelivery">Food Delivery</option>
+                    <option value="e-commerce">E-Commerce</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="banking">banking</option>
+                    <option value="education">Education</option>
+
+                </select>
+            </div>
+
+            <!-- Story Count -->
+            <div class="form-group">
+                <label for="storyCount">Number of User Stories</label>
+                <input type="number" id="storyCount" min="1" max="25" placeholder="e.g. 5" />
+            </div>
+
+            <!-- Combination Selection -->
+            <div class="form-group">
+                <label>Select Combination(s)</label>
+                <div id="combinationContainer" class="combination-grid">
+                    <!-- Generated via JS -->
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <button id="generateBtn" class="primary-btn">
+                Generate User Stories
+            </button>
+        </section>
+
+        <!-- 🔹 Loader -->
+        <div id="loader" class="loader hidden">
+            <img src="assets/loader.gif" alt="Loading..." />
+            <p>Generating user stories...</p>
+        </div>
+
+        <!-- 🔹 Result Section -->
+        <section id="resultSection" class="card hidden">
+            <div class="result-header">
+                <h2>Generated User Stories</h2>
+
+                <div class="nav-buttons">
+                    <button id="prevBtn">◀ Previous</button>
+                    <span id="currentCombinationLabel"></span>
+                    <button id="nextBtn">Next ▶</button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-wrapper">
+                <table id="storyTable">
+                    <thead>
+                        <tr>
+                            <th>User Story</th>
+                            <th>Unique</th>
+                            <th>Conflict Free</th>
+                            <th>Uniform</th>
+                            <th>Independent</th>
+                            <th>Complete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="download-actions">
+                <button id="downloadSingleBtn">
+                    Download Current Excel
+                </button>
+                <button id="downloadAllBtn">
+                    Download All Excels
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 🔷 Footer -->
+    <footer class="app-footer">
+        <p>© 2026 User Story Generator</p>
+    </footer>
+
+    <!-- 🔷 JS Files -->
+    <script src="./js/config.js"></script>
+    <script src="./js/validation.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/generator.js"></script>
+    <script src="./js/table.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/download.js"></script>
+
+</body>
+
+</html>

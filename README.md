@@ -61,6 +61,7 @@ frontend/
 └── assets/
 └── loader.gif
 
+```
 ---
 
 ## Frontend Flow Explanation

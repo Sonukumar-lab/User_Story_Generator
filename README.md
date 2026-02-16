@@ -42,6 +42,7 @@ Excel Generation
 
 ### Frontend Structure
 
+```
 frontend/
 │
 ├── index.html 
@@ -62,7 +63,7 @@ frontend/
 └── loader.gif
 
 ```
----
+
 
 ## Frontend Flow Explanation
 

@@ -1,4 +1,4 @@
-# 🧠 AI User Story Generator (USGenerator)
+# AI User Story Generator (USGenerator)
 
 An AI-powered full-stack web application that generates structured User Stories with Acceptance Criteria based on selected domains and combinations.
 

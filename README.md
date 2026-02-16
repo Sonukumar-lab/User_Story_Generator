@@ -251,10 +251,11 @@ Outgoing response:
 #### GeminiConfig.java
 
 Reads from `application.properties`:
+
+```properties
 spring.application.name=usgenerator
 gemini.api.key=YOUR_API_KEY
 gemini.api.url=YOUR_GEMINI_ENDPOINT
-
 
 Configures:
 - API Key  

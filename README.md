@@ -1,46 +1,45 @@
 # AI User Story Generator (USGenerator)
 
-An AI-powered full-stack web application that generates structured User Stories with Acceptance Criteria based on selected domains and combinations.
+An AI-powered full-stack web application that generates structured **User Stories with Acceptance Criteria** based on selected domains and feature combinations.
 
-The system uses **Spring Boot (Backend)** and **Vanilla JavaScript (Frontend)** and integrates with **Google Gemini API** for intelligent content generation.
+This system uses:
 
----
-
-## Project Overview
-
-This project allows users to:
-
-- Select a domain (e.g., Banking, Healthcare, E-commerce, etc.)
-- Generate AI-based User Stories
-- Navigate through multiple combinations
-- Track used combinations to avoid repetition
-- Download generated user stories in Excel format
-
-The system ensures:
-
-- Clean UI  
-- Controlled combinations  
-- API-based AI generation  
-- Excel export functionality  
-- Professional layered architecture  
+* **Spring Boot (Backend)**
+* **Vanilla JavaScript (Frontend)**
+* **Google Gemini API (AI Content Generator)**
+* **Apache POI (Excel Export)**
 
 ---
 
-## Project Architecture
+## 🚀 Project Overview
 
-Frontend (HTML + CSS + JS)
-↓
-REST API (Spring Boot Backend)
-↓
-Google Gemini API
-↓
-Excel Generation
+This application allows users to:
+
+* Select domain (Banking, Healthcare, E-commerce, etc.)
+* Generate AI-based user stories
+* Navigate multiple combinations
+* Track used combinations (avoid duplicates)
+* Download generated results in **Excel (.xlsx)**
+
+Key highlights:
+
+* Clean UI and modular frontend
+* Professional layered backend
+* AI-driven structured output
+* Scalable and production-ready architecture
 
 ---
 
-## 📂 Project Structure
+## 🏛️ System Architecture
 
-### Frontend Structure
+Frontend → Spring Boot REST API → Gemini AI → Excel Generator
+
+---
+
+## 📁 Project Structure
+
+### Frontend
+
 
 ```
 frontend/
@@ -64,64 +63,10 @@ frontend/
 
 ```
 
-## Frontend Flow Explanation
-
-### 1️ index.html
-- Provides UI for domain selection  
-- Contains Generate button  
-- Displays dynamic table for user stories  
-- Shows loader while API is processing  
-
-### 2️ config.js
-Stores:
-- Available domains  
-- Minimum/Maximum combinations  
-- Configuration constants  
-
-Ensures structured generation rules.
-
-### 3️ validation.js
-Validates:
-- Domain selection  
-- Empty inputs  
-- Invalid combinations  
-
-Prevents invalid API calls.
-
-### 4️ api.js
-Handles:
-- REST API calls to backend  
-- Sending `GenerationRequest`  
-- Receiving `GenerationResponse`  
-- Error handling  
-
-### 5️ generator.js
-- Triggered when user clicks Generate  
-- Calls validation  
-- Sends request to backend  
-- Updates UI after response  
-
-### 6️ table.js
-Dynamically renders:
-- User Story  
-- Acceptance Criteria  
-
-Updates table without page refresh.
-
-### 7️ navigation.js
-Handles:
-- Previous combination  
-- Next combination  
-- Avoids repeated combinations  
-
-### 8️ download.js
-- Calls backend Excel API  
-- Downloads `.xlsx` file  
-- Handles file response properly  
-
 ---
+### Backend (Spring Boot)
 
-## Backend Structure (Spring Boot)
+
 ```
 backend/
 │
@@ -155,236 +100,127 @@ backend/
 
 ```
 
-## Backend Detailed Explanation
+---
 
-### 1. Controller Layer
+## 🖥️ Frontend Flow
 
-#### UserStoryController.java
-Handles:
-- `/generate` → Generate user stories  
-- `/download` → Excel file download  
-
-Acts as REST API entry point.
+* Domain selection in index.html
+* Validation for inputs
+* API requests via api.js
+* Story generation via generator.js
+* Table rendering and navigation controls
+* Excel download implementation
 
 ---
 
-### 2. Service Layer
+## 🧠 Backend Layer Explanation
 
-#### UserStoryService.java
-Main business logic:
-- Accepts request  
-- Calls `GeminiService`  
-- Tracks combinations  
-- Returns structured response  
+### Controller Layer
 
-#### GeminiService.java
-Responsible for:
-- Connecting to Google Gemini API  
-- Sending structured prompt  
-- Receiving AI-generated response  
-- Parsing output  
+Handles incoming REST API requests for generation and file download.
 
-#### CombinationTrackerService.java
-- Tracks used combinations  
-- Prevents repetition  
-- Maintains combination history  
+### Service Layer
 
-#### ExcelService.java
-- Accepts generated user stories  
-- Calls `ExcelGenerator`  
-- Returns Excel file as response  
+* Business logic
+* Gemini API communication
+* Excel generation
+* Combination tracking
 
----
+### Model Layer
 
-### 3. Model Layer
+Defines data structures for requests and responses.
 
-#### UserStory.java
-Represents:
-- Title  
-- Description  
-- Acceptance Criteria  
+### Repository Layer
 
-#### GenerationRequest.java
-Incoming request:
-- Domain  
-- Combination criteria  
+Stores used combination history.
 
-#### CombinationCriteria.java
-Defines:
-- Selected features  
-- Filtering logic  
+### Utility Layer
 
-#### GenerationResponse.java
-Outgoing response:
-- List of user stories  
-- Metadata  
+* PromptBuilder for AI prompts
+* ExcelGenerator for .xlsx file creation
+
+### Config Layer
+
+API keys, CORS setup, and RestTemplate configuration.
 
 ---
 
-### 4. Repository Layer
+## 🔄 Complete Flow
 
-#### CombinationStatusRepository.java
-- Stores used combinations  
-- Prevents duplication  
-
----
-
-### 5. Utility Layer
-
-#### PromptBuilder.java
-- Builds structured prompt  
-- Formats input for Gemini AI  
-- Ensures clean AI output  
-
-#### ExcelGenerator.java
-- Creates `.xlsx` file  
-- Formats:
-  - Columns  
-  - Headers  
-  - Rows  
-- Uses Apache POI internally  
+1. User selects domain
+2. Clicks Generate
+3. Frontend sends request
+4. Backend builds prompt
+5. Gemini AI returns stories
+6. Backend formats response
+7. Frontend displays table
+8. User downloads Excel
 
 ---
 
-### 6. Config Layer
+## ⭐ Key Features
 
-#### GeminiConfig.java
-
-Reads from `application.properties`:
-
-```properties
-spring.application.name=usgenerator
-gemini.api.key=YOUR_API_KEY
-gemini.api.url=YOUR_GEMINI_ENDPOINT
-
-Configures:
-- API Key  
-- Base URL  
-- RestTemplate  
-
-#### CorsConfig.java
-- Enables frontend-backend communication  
-- Prevents CORS errors  
+* AI-generated user stories
+* Combination tracking
+* Modular architecture
+* Excel export
+* Validation + clean UI
+* Structured prompt engineering
 
 ---
 
-## Complete Flow (Step-by-Step)
-
-### Step 1: User Selects Domain
-Frontend validates input.
-
-### Step 2: Generate Button Click
-`generator.js` triggers API call.
-
-### Step 3: Backend Receives Request
-`UserStoryController` receives `GenerationRequest`.
-
-### Step 4: Business Logic Execution
-`UserStoryService`:
-- Validates criteria  
-- Calls `GeminiService`  
-- Builds prompt via `PromptBuilder`  
-
-### Step 5: Gemini API Call
-AI generates structured user stories.
-
-### Step 6: Response Processing
-Backend:
-- Converts AI output into `UserStory` objects  
-- Returns `GenerationResponse`  
-
-### Step 7: Frontend Table Rendering
-`table.js` dynamically displays data.
-
-### Step 8: Excel Download
-User clicks Download:
-- Frontend calls `/download`  
-- `ExcelService` generates file  
-- File downloaded as `.xlsx`  
-
----
-
-## Key Features
-
-- AI-based User Story Generation  
-- Clean Modular Architecture  
-- Combination Tracking  
-- CORS Configuration  
-- Structured Prompt Engineering  
-- Excel Download Functionality  
-- Dynamic UI Rendering  
-- Professional Layered Backend  
-
----
-
-## Technologies Used
+## 🛠 Technologies Used
 
 ### Frontend
-- HTML5  
-- CSS3  
-- Vanilla JavaScript  
+
+HTML, CSS, Vanilla JS
 
 ### Backend
-- Java  
-- Spring Boot  
-- REST API  
-- Apache POI  
 
-### AI Integration
-- Google Gemini API  
+Java, Spring Boot, Apache POI
 
----
+### AI
 
-## How to Run Project
-
-### Backend Setup
-
-1. Open project in IDE  
-2. Add your Gemini API Key in `application.properties`  
-3. Run `Application.java`  
-
-Backend runs on:
-http://localhost:8080
+Google Gemini API
 
 ---
 
-### Frontend Setup
+## ▶️ How to Run
 
-1. Open `index.html`  
-2. Run using Live Server  
-3. Ensure backend is running  
+### Backend
 
----
+* Add Gemini API key in application.properties
+* Run Spring Boot application
+* Access at [http://localhost:8080](http://localhost:8080)
 
-## Design Pattern Used
+### Frontend
 
-- Layered Architecture  
-- Separation of Concerns  
-- RESTful API Design  
-- Service-Oriented Structure  
+* Open index.html
+* Run with Live Server
 
 ---
 
-## Why This Project is Professional
+## 🧱 Design Patterns
 
-- Clean folder structure  
-- Proper separation of layers  
-- API-based architecture  
-- Scalable design  
-- Secure configuration  
-- Reusable services  
-- Excel export functionality  
-- Production-ready architecture style  
+* Layered Architecture
+* REST API Principles
+* Service-Oriented Design
+* Separation of Concerns
+
+---
+
+## 🏆 Professional Aspects
+
+* Scalable folder structure
+* Reusable service utilities
+* Production-grade architecture
+* AI integrated with validated prompts
+* Excel export for documentation teams
 
 ---
 
 ## 👨‍💻 Author
 
-**Sonu Kumar**  
-4th Year B.Tech (CSE) Student
-
-
-
-
-
-
+**Sonu Kumar**
+Final Year B.Tech (CSE) Student
+AI & Full Stack Developer
